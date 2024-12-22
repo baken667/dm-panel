@@ -6,6 +6,25 @@ import {
 import { Trans } from "react-i18next";
 import { Establishment } from "@/types/establishment-type";
 import DataTable from "../common/DataTable";
+import { Edit2 } from "lucide-react";
+import { NavLink } from "react-router";
+import { Button } from "../ui/button";
+
+interface EditDropdownProps {
+  establishment: Establishment;
+}
+
+function Actions({ establishment }: EditDropdownProps) {
+  return (
+    <div className="flex justify-end">
+      <Button variant="ghost" size="icon" asChild>
+        <NavLink to={`/establishments/${establishment.id}`}>
+          <Edit2 />
+        </NavLink>
+      </Button>
+    </div>
+  );
+}
 
 interface Props {
   data?: Establishment[];
@@ -23,6 +42,11 @@ function EstablishmentsTable({ data = [], isPending }: Props) {
           <p className="text-muted-foreground text-sm">{row.original.slug}</p>
         </div>
       ),
+    },
+    {
+      id: "actions",
+      enableHiding: true,
+      cell: ({ row }) => <Actions establishment={row.original} />,
     },
   ];
 
