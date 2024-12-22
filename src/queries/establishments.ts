@@ -8,6 +8,7 @@ import { QueryParamsType } from "@/types/query-params";
 import { Response, ResponseList } from "@/types/response-type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
+export const ESTABLISHMENT_KEY = "establishment";
 export const ESTABLISHMENTS_KEY = ["establishments"];
 export const ESTABLISHMENT_CREATE_KEY = ["establishments", "create"];
 
@@ -31,6 +32,18 @@ export function useEstablishmentListQuery({
           ...queryParamsParser(queryParams),
         },
       }),
+  });
+}
+
+export function useEstablishmentQuery(id?: number | string) {
+  return useQuery({
+    queryKey: [ESTABLISHMENT_KEY, id],
+    queryFn: () =>
+      api<Response<Establishment>>({
+        method: "GET",
+        url: `api/v1/establishments/${id}`,
+      }),
+    enabled: !!id,
   });
 }
 
