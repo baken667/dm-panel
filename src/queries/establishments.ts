@@ -11,6 +11,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 export const ESTABLISHMENT_KEY = "establishment";
 export const ESTABLISHMENTS_KEY = ["establishments"];
 export const ESTABLISHMENT_CREATE_KEY = ["establishments", "create"];
+export const ESTABLISHMENT_STATUS_UPDATE_KEY = [
+  "establishments",
+  "update",
+  "status",
+];
 
 type EstablishmentListParams = ParamsWithPaginationType<{
   queryParams?: QueryParamsType;
@@ -55,6 +60,20 @@ export function useEstablishmentCreateMutation() {
         method: "POST",
         url: "api/v1/establishments",
         data,
+      }),
+  });
+}
+
+export function useEstablishmentStatusUpdateMutation() {
+  return useMutation({
+    mutationKey: ESTABLISHMENT_STATUS_UPDATE_KEY,
+    mutationFn: (data: { id: number; status: boolean }) =>
+      api({
+        method: "POST",
+        url: `api/v1/establishments/${data.id}`,
+        data: {
+          active: data.status,
+        },
       }),
   });
 }

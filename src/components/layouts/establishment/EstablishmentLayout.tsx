@@ -1,18 +1,18 @@
 import { Outlet } from "react-router";
-import EstablishmentProvider from "@/context/establishment/establishment-provider";
+import EstablishmentNavbar from "./EstablishmentNavbar";
+import EstablishmentHeader from "./EstablishmentHeader";
 
 function EstablishmentLayout() {
   return (
-    <EstablishmentProvider>
-      <div className="flex-1 flex flex-row">
-        <div className="h-[calc(100dvh-4rem)] sticky top-8">
-
-        </div>
-        <div className="flex-1 h-[200dvh]">
+    <div className="flex-1 flex flex-row">
+      <EstablishmentNavbar />
+      <div className="flex-1">
+        <EstablishmentHeader />
+        <div className="pt-8">
           <Outlet />
         </div>
       </div>
-    </EstablishmentProvider>
+    </div>
   );
 }
 export default EstablishmentLayout;

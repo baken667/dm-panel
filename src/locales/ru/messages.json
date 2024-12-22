@@ -49,7 +49,13 @@
   "edit_establishment_description": "Здесь вы можете редактировать заведение",
   "establishment_updated_successfully": "Заведение успешно обновлено",
   "establishment_delete": "Удалить заведение",
+  "establishment_logo": "Логотип заведения",
+  "establishment_logo_description": "Здесь вы можете загрузить логотип заведения",
   "slug": "Слаг",
   "active": "Активно",
-  "inactive": "Неактивно"
+  "inactive": "Неактивно",
+  "main_data": "Основные данные",
+  "status": "Статус",
+  "updating_establishment_status": "Обновление статуса заведения",
+  "establishment_status_updated": "Статус заведения обновлен"
 }
