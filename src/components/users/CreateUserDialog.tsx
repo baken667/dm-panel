@@ -139,11 +139,7 @@ function CreateUserDialog() {
             <DialogFooter>
               <Button
                 type="submit"
-                disabled={
-                  !form.formState.isValid ||
-                  !form.formState.isDirty ||
-                  isPending
-                }
+                disabled={!form.formState.isDirty || isPending}
               >
                 <Trans>add_user</Trans>
                 {isPending && <Loader2 className="animate-spin" />}

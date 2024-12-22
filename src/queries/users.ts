@@ -55,7 +55,7 @@ export function useUserQuery(id: number) {
 
 export function useUserUpdateMutation() {
   return useMutation({
-    mutationKey: [USER_UPDATE_KEY],
+    mutationKey: USER_UPDATE_KEY,
     mutationFn: (data: {
       id: number;
       data: ProfileUpdateSchemaType | UserUpdateSchemaType;
@@ -75,7 +75,7 @@ export function useUserUpdateMutation() {
 
 export function useUserCreateMutation() {
   return useMutation({
-    mutationKey: [USER_CREATE_KEY],
+    mutationKey: USER_CREATE_KEY,
     mutationFn: (data: UserCreateSchemaType) =>
       api<Response<User>>({
         method: "POST",

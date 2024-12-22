@@ -18,6 +18,7 @@ import {
 import { Button } from "../ui/button";
 import EditUserDialog from "./EditUserDialog";
 import { Badge } from "../ui/badge";
+import UserDeleteAlert from "./UserDeleteAlert";
 
 interface EditDropdownProps {
   user: User;
@@ -26,6 +27,7 @@ interface EditDropdownProps {
 function EditDropdown({ user }: EditDropdownProps) {
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
 
   function handleSelect(action: () => void) {
     setOpen(false);
@@ -35,6 +37,7 @@ function EditDropdown({ user }: EditDropdownProps) {
   return (
     <div className="flex justify-end">
       <EditUserDialog userId={user.id} open={openEdit} setOpen={setOpenEdit} />
+      <UserDeleteAlert userId={user.id} open={openDelete} setOpen={setOpenDelete} />
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button size="icon" variant="ghost">
@@ -48,7 +51,9 @@ function EditDropdown({ user }: EditDropdownProps) {
             <Edit2 />
             <Trans>edit</Trans>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => handleSelect(() => setOpenDelete(true))}
+          >
             <Trash2 />
             <Trans>delete</Trans>
           </DropdownMenuItem>
