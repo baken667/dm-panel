@@ -9,6 +9,7 @@ export type Establishment = {
   details: string | null;
   logo: ImageRecord
   users?: User[];
+  active_at: Date | null;
   created_at: Date;
   updated_at: Date;
 };

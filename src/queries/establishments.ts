@@ -1,7 +1,10 @@
 import api from "@/lib/api";
 import queryParamsParser from "@/lib/query-params-parser";
 import transformPaginationParams from "@/lib/transform-pagination-params";
-import { CreateEstablishmentSchemaType } from "@/schema/establishment";
+import {
+  CreateEstablishmentSchemaType,
+  UpdateEstablishmentSchemaType,
+} from "@/schema/establishment";
 import { Establishment } from "@/types/establishment-type";
 import { ParamsWithPaginationType } from "@/types/query-paginated-params";
 import { QueryParamsType } from "@/types/query-params";
@@ -15,6 +18,11 @@ export const ESTABLISHMENT_STATUS_UPDATE_KEY = [
   "establishments",
   "update",
   "status",
+];
+export const ESTABLISHMENT_LOGO_UPDATE_KEY = [
+  "establishments",
+  "update",
+  "logo",
 ];
 
 type EstablishmentListParams = ParamsWithPaginationType<{
@@ -80,8 +88,23 @@ export function useEstablishmentStatusUpdateMutation() {
 
 export function useEstablishmentLogoUpdateMutation() {
   return useMutation({
-    mutationKey: ESTABLISHMENT_STATUS_UPDATE_KEY,
+    mutationKey: ESTABLISHMENT_LOGO_UPDATE_KEY,
     mutationFn: (data: { data: FormData; id: number | string }) =>
+      api({
+        method: "POST",
+        url: `api/v1/establishments/${data.id}`,
+        data: data.data,
+      }),
+  });
+}
+
+export function useEstablishmentUpdateMutation() {
+  return useMutation({
+    mutationKey: ESTABLISHMENT_LOGO_UPDATE_KEY,
+    mutationFn: (data: {
+      data: UpdateEstablishmentSchemaType;
+      id: number | string;
+    }) =>
       api({
         method: "POST",
         url: `api/v1/establishments/${data.id}`,
