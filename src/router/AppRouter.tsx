@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router";
 import DashboardLayout from "@/components/layouts/dashboard/DashboardLayout";
 import ProtectedRoute from "@/components/app/ProtectedRoute";
 import EstablishmentLayout from "@/components/layouts/establishment/EstablishmentLayout";
+import EstablishmentUsers from "@/pages/establishments/EstablishmentUsers";
 
 const EstablishmentsPage = lazy(
   () => import("../pages/establishments/EstablishmentsPage")
@@ -21,10 +22,15 @@ function AppRouter() {
         <Route path="/" element={<EstablishmentsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
 
-        <Route path="/establishments/:estId" element={<EstablishmentLayout key="estId" />}>
+        <Route
+          path="/establishments/:estId"
+          element={<EstablishmentLayout key="estId" />}
+        >
           <Route index element={<Navigate to="main" />} />
           <Route path="main" element={<EstablishmentPage />} />
-          <Route path="users" element={<EstablishmentPage />} />
+          <Route element={<ProtectedRoute roles={["admin"]} />}>
+            <Route path="users" element={<EstablishmentUsers />} />
+          </Route>
         </Route>
 
         <Route element={<ProtectedRoute roles={["admin"]} />}>

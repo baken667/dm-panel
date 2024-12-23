@@ -1,3 +1,4 @@
+import { ImageRecord } from "./image-record";
 import { User } from "./user-type";
 
 export type Establishment = {
@@ -6,7 +7,7 @@ export type Establishment = {
   slug: string;
   active: boolean;
   details: string | null;
-  logo: string | null;
+  logo: ImageRecord
   users?: User[];
   created_at: Date;
   updated_at: Date;

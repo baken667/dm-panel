@@ -77,3 +77,15 @@ export function useEstablishmentStatusUpdateMutation() {
       }),
   });
 }
+
+export function useEstablishmentLogoUpdateMutation() {
+  return useMutation({
+    mutationKey: ESTABLISHMENT_STATUS_UPDATE_KEY,
+    mutationFn: (data: { data: FormData; id: number | string }) =>
+      api({
+        method: "POST",
+        url: `api/v1/establishments/${data.id}`,
+        data: data.data,
+      }),
+  });
+}
